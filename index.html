@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>VR Cinema</title>
+	
+	<script type="text/javascript" src="https://rawgit.com/aframevr/aframe/f850c2f/dist/aframe-master.min.js"></script>
+
+</head>
+<body>
+	
+	<a-scene>
+		<a-assets>
+			<video id="trailer-src" src="got.mp4" playsinline webkit-playsinline="webkit-playsinline" autoplay loop></video>
+		</a-assets>
+
+
+		<a-video 
+    position='0 36 -270'
+    rotation="0 0 0"
+    material='color:#FFF;shader:flat;side:double;transparent:true;src:#trailer-src'
+    geometry='primitive:plane;width:32;height:18' rotation='0 0 0'
+    scale='10 10 10'>
+    	
+
+    </a-video>
+
+		<a-sky src="cinema.jpg" rotation="0 -90 0"></a-sky>	
+	</a-scene>
+
+
+
+	<script type="text/javascript">
+			
+		document.addEventListener("DOMContentLoaded", function(event) {
+
+
+			var video = document.getElementById('trailer-src');
+			video.pause();
+
+			var scene = document.querySelector('a-scene');
+
+
+			scene.addEventListener('enter-vr', function(){
+				video.play();
+			});
+
+			scene.addEventListener('exit-vr', function(){
+				video.pause();
+			});
+
+
+		})
+
+
+	</script>
+	
+
+</body>
+</html>
